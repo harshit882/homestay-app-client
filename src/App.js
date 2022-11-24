@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './Home';
 import Header from './Header';
+import Footer from './Footer'
 function App() {
   return (
     <div className="App">
@@ -11,10 +12,11 @@ function App() {
   {/* Home */}
 
    
-    {/* Banner */}
+    {/* Banner---inside home components  */} 
       {/* searchDate */}
 
     {/* cards */}
+    <Footer/>
     {/* footer */}
   
   {/* searchPage... */}

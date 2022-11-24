@@ -3,8 +3,8 @@ import './Header.css'
 import SearchIcon from '@mui/icons-material/Search';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import {Avatar} from '@material-ui/core'; wanna pass it like a component but not able to install @material-ui/core on my system HELP!!!
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {Avatar} from '@material-ui/core';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Header() {
   return (
     <div className='header'>
@@ -19,7 +19,8 @@ function Header() {
         <p>Become a host</p>
         <LanguageIcon/>
         <ExpandMoreIcon/>
-        <AccountCircleIcon/>
+        {/* <AccountCircleIcon/> */}
+        <Avatar/>
         
       </div>
     </div>
