@@ -1,15 +1,18 @@
 import React from 'react'
 import './Header.css'
+import { Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import LanguageIcon from '@mui/icons-material/Language';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {Avatar} from '@material-ui/core';
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Header() {
   return (
     <div className='header'>
-      {/* <h3>header Component</h3> */}
-      <img src="https://dynamic.brandcrowd.com/asset/logo/f26fbab6-d2ac-4944-bc94-09ddf7cde5a2/logo-search-grid-1x?v=636989397566000000&text=Home+stays" alt="HomeStay" className='header__icon' />
+    <Link to='/'>
+    <img src="https://dynamic.brandcrowd.com/asset/logo/f26fbab6-d2ac-4944-bc94-09ddf7cde5a2/logo-search-grid-1x?v=636989397566000000&text=Home+stays" alt="HomeStay" className='header__icon' />
+    </Link>
+   
+     
       <div className="header__center">
         <input type="text" />
         <SearchIcon/>

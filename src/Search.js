@@ -1,6 +1,7 @@
 import React ,{useState} from 'react'
 // Date picker component
 import './Search.css'
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import GroupIcon from '@mui/icons-material/Group';
 import {DateRangePicker} from 'react-date-range'
@@ -8,6 +9,7 @@ import 'react-date-range/dist/styles.css'; //main style file
 import 'react-date-range/dist/theme/default.css'; //theme style file
 
 function Search() {
+  let navigate =useNavigate()
     const[startDate,setStartDate] =useState(new Date());
     const[endDate,setEndDate] =useState(new Date());
 
@@ -31,7 +33,7 @@ function Search() {
         <GroupIcon/>
         </h2>
         <input min={0} defaultValue={2} type= 'number' />
-        <Button>Search Destinations </Button>
+        <Button  onClick={()=>navigate('/search')} >Search Destinations </Button>
     </div>
   )
 }

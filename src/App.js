@@ -1,27 +1,23 @@
 import './App.css';
 import Home from './Home';
 import Header from './Header';
+import {BrowserRouter as Router ,Routes,Route } from "react-router-dom";
+import SearchPage from "./SearchPage";
 import Footer from './Footer'
 function App() {
   return (
     <div className="App">
-
+    <Router>
     <Header/> 
-    {/* header ....header section completed almost*/ }
-    <Home/>
-  {/* Home */}
-
+   <Routes>
+    <Route path='search' element= {<SearchPage/>}/>
+         
+         
+    <Route path='/' element= {<Home/>}/>
    
-    {/* Banner---inside home components  */} 
-      {/* searchDate */}
-
-    {/* cards */}
+    </Routes>
     <Footer/>
-    {/* footer */}
-  
-  {/* searchPage... */}
-    {/* header */}
-    {/* .... */}
+    </Router>
     </div>
   );
 }
