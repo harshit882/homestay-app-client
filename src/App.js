@@ -4,7 +4,13 @@ import Header from './Header';
 import {BrowserRouter as Router ,Routes,Route } from "react-router-dom";
 import SearchPage from "./SearchPage";
 import Footer from './Footer'
+import './index.css'
+// import { useContext } from 'react';
+// import { useGlobalContext } from './context';
 function App() {
+  // let data =useContext(AppContext)
+  // let data = useGlobalContext()
+  // console.log(data)
   return (
     <div className="App">
     <Router>

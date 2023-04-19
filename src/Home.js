@@ -1,11 +1,12 @@
 import React from 'react'
 import Banner from './Banner'
 import Card from './Card'
-import './Home.css';
+import './Home.css'; 
 function Home() {
   return (
     <div className='home'>
       {/* <h1>home component</h1> */}
+      {/* <h4 className='text-rose-500 text-2xl'>Airbnb</h4> */}
       <Banner/>
 
       <div className="home__section home__section_1">

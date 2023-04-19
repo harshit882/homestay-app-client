@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import './SearchPage.css'
 import { Button } from '@material-ui/core'
 import SearchResult from './SearchResult'
-function searchPage() {
+function SearchPage() {
+    const [hotels, setHotels] =useState([])
+    let url ="https://cdn.rawgit.com/abbassiddiqi/airbnb-api/bbd1300a/flats.json"
+    async function hotelData(url){
+        let data = await fetch(url)
+        let hotelList =await data.json()
+        setHotels(hotelList)
+    }
+    
+    useEffect(()=>{
+        // debugger
+        hotelData(url)
+    },[url]) 
+
   return (
     <div className='SearchPage'>
     <div className="searchPage_info">
@@ -24,45 +37,25 @@ function searchPage() {
             More Filters
         </Button>
     </div>
-
-    <SearchResult img ="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600"
+    {hotels.map((currEle)=>{
+        return(
+            <SearchResult img ={currEle.imageUrl}
         location ='Private room in outskirts'
-        title ='stays at this spacious Anil house'
+        title ={currEle.name}
         description='1 guest . 1 bedroom .1 bed .1.5 shared bathrooms . Wifi . kitchen . Parking facility'
         star={4.7}
-        price ='2000/ night'
+        price ={currEle.price }
         total ='4000/total'
     />
 
-<SearchResult img ="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600"
-        location ='Private room in outskirts'
-        title ='stays at this spacious Anil house'
-        description='1 guest . 1 bedroom .1 bed .1.5 shared bathrooms . Wifi . kitchen . Parking facility'
-        star={4.7}
-        price ='2000/ night'
-        total ='4000/total'
-    />
+        )
+    })}
 
-<SearchResult img ="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600"
-        location ='Private room in outskirts'
-        title ='stays at this spacious Anil house'
-        description='1 guest . 1 bedroom .1 bed .1.5 shared bathrooms . Wifi . kitchen . Parking facility'
-        star={4.7}
-        price ='2000/ night'
-        total ='4000/total'
-    />
+   
 
-<SearchResult img ="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600"
-        location ='Private room in outskirts'
-        title ='stays at this spacious Anil house'
-        description='1 guest . 1 bedroom .1 bed .1.5 shared bathrooms . Wifi . kitchen . Parking facility'
-        star={4.7}
-        price ='2000/ night'
-        total ='4000/total'
-    />
       
     </div>
   )
 }
 
-export default searchPage
+export default SearchPage
