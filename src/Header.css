@@ -10,32 +10,11 @@
     top: 0;
    width: 100%;
 }
-.header__center{
-    flex:1;
-    display: flex;
-    align-items: center;
-    max-width: fit-content;
-    /* background-color: aqua; */
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 999px;
-}
-.header__center>input{
-    border: none;
-    outline-width: 0;
-    padding: 10px;
-    /* max-width: 250px; */
-}
+
 
 .header__icon{
     /* object-fit: contain; */
     height: 100px;
     margin-left: 20px ;
 }
-.header__right{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 15vw;
-    margin-right: 80px;
-}
+

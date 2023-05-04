@@ -5,6 +5,7 @@ import {BrowserRouter as Router ,Routes,Route } from "react-router-dom";
 import SearchPage from "./SearchPage";
 import Footer from './Footer'
 import './index.css'
+import RegisterModel from './RegisterModel';
 // import { useContext } from 'react';
 // import { useGlobalContext } from './context';
 function App() {
@@ -14,6 +15,8 @@ function App() {
   return (
     <div className="App">
     <Router>
+    {/* <Modal isOpen={true}/> */}
+    <RegisterModel/>
     <Header/> 
    <Routes>
     <Route path='search' element= {<SearchPage/>}/>
