@@ -6,6 +6,8 @@ import SearchPage from "./SearchPage";
 import Footer from './Footer'
 import './index.css'
 import RegisterModel from './RegisterModel';
+import { Toaster } from 'react-hot-toast';
+import ToasterProvider from './providers/ToasterProvider';
 // import { useContext } from 'react';
 // import { useGlobalContext } from './context';
 function App() {
@@ -16,6 +18,8 @@ function App() {
     <div className="App">
     <Router>
     {/* <Modal isOpen={true}/> */}
+    {/* <Toaster/> */}
+    <ToasterProvider/>
     <RegisterModel/>
     <Header/> 
    <Routes>

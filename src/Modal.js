@@ -142,6 +142,7 @@ if(!isOpen) {
             <Buttons disabled={disabled} label={actionLabel} onClick={handelSubmit}/>
            
             </div>
+            {footer}
 
             </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const MenuItems = ({onclick , label}) => {
   return (
-    <div>
+    <>
     <div className='
         px-4
         py-3
@@ -10,10 +10,11 @@ const MenuItems = ({onclick , label}) => {
         transition 
         font-semibold
     ' onClick={onclick}>
+    {label}
       {/* <p>i am menu items</p> */}
     </div>
-    {label}
-    </div>
+    
+    </>
   )
 }
 
