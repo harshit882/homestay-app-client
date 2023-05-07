@@ -3,8 +3,10 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from './Avatar'
 import MenuItems from './MenuItems'
 import useRegisterModel from './hooks/useRegisterModel'
-const UserMenu = () => {
+import useLoginModel from './hooks/useLoginModel'
+const UserMenu = ({currentUser}) => {
   const registerModel =useRegisterModel()
+  const loginModel =useLoginModel()
     const [isOpen , setIsOpen] =useState(false)
     const toggleUser =useCallback(()=>{
         setIsOpen((value)=> !value)
@@ -40,10 +42,27 @@ const UserMenu = () => {
             text-sm
             '>
         <div className='flex flex-col cursor-pointer mx-2'>
-        <>
-            <MenuItems onclick={()=>{}} label= "Login"/>
+        {/* {currentUser ?(
+          <>
+            <MenuItems onclick={()=>{}} label= "My trips"/>
+            <MenuItems onclick={()=>{}} label= "My Favourite"/>
+            <MenuItems onclick={()=>{}} label= "My properties"/>
+            <MenuItems onclick={()=>{}} label= "HomeStay my home "/>
+            <hr />
+            <MenuItems onclick={()=>{}} label= "Logout"/>
+        </>
+
+        ):(
+          <>
+            <MenuItems onclick={loginModel.onOpen} label= "Login"/>
             <MenuItems onclick={registerModel.onOpen} label= "Sign Up"/>
         </>
+        )} */}
+        <>
+            <MenuItems onclick={loginModel.onOpen} label= "Login"/>
+            <MenuItems onclick={registerModel.onOpen} label= "Sign Up"/>
+        </>
+        
 
         </div>
         </div>

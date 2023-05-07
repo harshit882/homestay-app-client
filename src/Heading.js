@@ -8,6 +8,7 @@ const Heading = ({
   return (
     <div className={
         `
+        mb-4
         ${center?'text-center' :'text-start'}
         `
     }

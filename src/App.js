@@ -8,6 +8,7 @@ import './index.css'
 import RegisterModel from './RegisterModel';
 import { Toaster } from 'react-hot-toast';
 import ToasterProvider from './providers/ToasterProvider';
+import LoginModel from './LoginModel';
 // import { useContext } from 'react';
 // import { useGlobalContext } from './context';
 function App() {
@@ -21,6 +22,7 @@ function App() {
     {/* <Toaster/> */}
     <ToasterProvider/>
     <RegisterModel/>
+    <LoginModel/>
     <Header/> 
    <Routes>
     <Route path='search' element= {<SearchPage/>}/>

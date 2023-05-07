@@ -9,6 +9,9 @@ import UserMenu from './UserMenu';
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // import {Avatar} from '@material-ui/core';
 function Header() {
+  function currentUser() {
+    return null
+  }
   return (
     <div className='header fixed w-full bg-white z-10 shadow-sm '>
     <Link to='/'>
@@ -19,7 +22,7 @@ function Header() {
    <Container>
     <div className='flex flex-row item-center justify-between gap-3 md:gap-0'>
     <SearchInput/>
-    <UserMenu/>
+    <UserMenu currentUser ={currentUser}/>
     </div>
    </Container>
     
