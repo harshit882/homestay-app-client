@@ -6,20 +6,15 @@ import SearchPage from "./SearchPage";
 import Footer from './Footer'
 import './index.css'
 import RegisterModel from './RegisterModel';
-import { Toaster } from 'react-hot-toast';
 import ToasterProvider from './providers/ToasterProvider';
 import LoginModel from './LoginModel';
 // import { useContext } from 'react';
-// import { useGlobalContext } from './context';
+import { UserContextProvider } from './context/UserContext';
 function App() {
-  // let data =useContext(AppContext)
-  // let data = useGlobalContext()
-  // console.log(data)
   return (
     <div className="App">
+    <UserContextProvider>
     <Router>
-    {/* <Modal isOpen={true}/> */}
-    {/* <Toaster/> */}
     <ToasterProvider/>
     <RegisterModel/>
     <LoginModel/>
@@ -33,7 +28,9 @@ function App() {
     </Routes>
     <Footer/>
     </Router>
+    </UserContextProvider>
     </div>
+   
   );
 }
 

@@ -4,7 +4,7 @@ import Avatar from './Avatar'
 import MenuItems from './MenuItems'
 import useRegisterModel from './hooks/useRegisterModel'
 import useLoginModel from './hooks/useLoginModel'
-const UserMenu = ({currentUser}) => {
+const UserMenu = ({currentUser,UserMenu}) => {
   const registerModel =useRegisterModel()
   const loginModel =useLoginModel()
     const [isOpen , setIsOpen] =useState(false)
@@ -15,7 +15,7 @@ const UserMenu = ({currentUser}) => {
   return (
     <div className='relative'>
     <div className='flex flex-row item-center gap-3'>
-        <div className='hidden md:block text-sm font-semibld py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer' onClick={()=>{}}>
+        <div className='hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer' onClick={()=>{}}>
         HomeStay your Home
 
         </div>

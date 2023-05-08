@@ -4,10 +4,14 @@ import { Link } from "react-router-dom";
 import Container from "./Container";
 import SearchInput from "./SearchInput";
 import UserMenu from "./UserMenu";
+import { useContext } from "react";
+import { UserContext } from "./context/UserContext";
 function Header() {
+  const {user} = useContext(UserContext)
   function currentUser() {
     return null;
   }
+  // console.log(user)
   return (
     <div className="header fixed w-full bg-white z-10 shadow-sm ">
       <Link to="/">
@@ -22,11 +26,12 @@ function Header() {
         <Container>
           <div className="flex flex-row item-center justify-between gap-3 md:gap-0">
             <SearchInput />
-            <UserMenu currentUser={currentUser} />
+            
           </div>
         </Container>
       </div>
-      Hi lol
+      <UserMenu currentUser={currentUser} user={user} />
+      {/* Hi lol */}
     </div>
   );
 }
