@@ -35,7 +35,7 @@ const LoginModel = () => {
     },
   });
 
-  const onsubmit = (data) => {
+  const onsubmit = async (data) => {
     setIsLoading(true);
     // signIn("credentials", {
     //   ...data,
@@ -71,7 +71,7 @@ const LoginModel = () => {
     //     setIsLoading(false);
     //   });
     // write the same in fetch
-    fetch("http://localhost:3002/user/login", {
+    await fetch("https://homestay-app-server.cyclic.app/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
