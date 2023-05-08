@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import  Container  from './Container';
 import SearchInput from './SearchInput';
 import UserMenu from './UserMenu';
-// import SearchIcon from '@mui/icons-material/Search';
-// import LanguageIcon from '@mui/icons-material/Language';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import {Avatar} from '@material-ui/core';
 function Header() {
   function currentUser() {
     return null
