@@ -32,13 +32,16 @@ const RegisterModel = () => {
     try {
       setIsLoading(true);
       // write it in fetch
-      const res = await fetch("http://localhost:3002/user/register", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      });
+      const res = await fetch(
+        "https://homestay-app-server.cyclic.app/user/register",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
       const result = await res.json();
       console.log(result);
       if (res.ok) {
