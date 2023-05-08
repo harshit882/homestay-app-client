@@ -1,12 +1,8 @@
 import React from 'react'
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
-import { useEffect } from 'react';
 const Avatar = () => {
   const {user} = useContext(UserContext)
-  useEffect(()=>{
-    
-  },[user])
   return (
     // <Image className ="rounded-full" height ="30" width= "30" alt = "avatar" src ="/images/placeholder.jpg" />
     <>
