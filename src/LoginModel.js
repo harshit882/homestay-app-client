@@ -10,12 +10,13 @@ import { toast } from "react-hot-toast";
 import Buttons from "./Buttons";
 import useLoginModel from "./hooks/useLoginModel";
 import useRegisterModel from "./hooks/useRegisterModel";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
+import { useEffect } from "react";
 
 const LoginModel = () => {
-  const {setUser} =useContext(UserContext)
+  const {setUser,user} =useContext(UserContext)
   const navigate =useNavigate()
   const registerModel = useRegisterModel();
   const loginModel = useLoginModel();
@@ -45,16 +46,25 @@ const LoginModel = () => {
         if(userInfo.ok){
           const userInfoData =await userInfo.json()
           
-          toast.success("Logged in")
+          
           setUser(userInfoData)
+        
+      
          
           // console.log(userInfoData)
 
-          navigate('/')
+          
             localStorage.setItem('isLoggedIn', true);
               localStorage.setItem('dataKey', JSON.stringify(userInfoData));
+           
+             
           loginModel.onClose();
           setIsLoading(false);
+          // debugger
+          // {user? navigate('/account'):navigate('/')}
+          toast.success(`Logged in Welcome back `)
+          navigate('/account')
+          
         }else {
               toast.error('Something went wrong')
             }
@@ -67,6 +77,7 @@ const LoginModel = () => {
       }
     
   };
+
   
 
   const bodyContent = (

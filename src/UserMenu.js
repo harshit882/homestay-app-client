@@ -4,14 +4,33 @@ import Avatar from './Avatar'
 import MenuItems from './MenuItems'
 import useRegisterModel from './hooks/useRegisterModel'
 import useLoginModel from './hooks/useLoginModel'
-const UserMenu = ({currentUser,UserMenu}) => {
+import { useContext } from 'react'
+import { UserContext } from './context/UserContext'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+
+const UserMenu = ({user}) => {
+  // const navigate =useNavigate()
+  const navigate =useNavigate()
   const registerModel =useRegisterModel()
   const loginModel =useLoginModel()
     const [isOpen , setIsOpen] =useState(false)
     const toggleUser =useCallback(()=>{
         setIsOpen((value)=> !value)
     },[])
-    // console.log("toggled")
+    const {setUser} =useContext(UserContext)
+    function logoutUser() {
+      if(user){
+        setUser(null)
+        localStorage.clear()
+        toast.success("Logged out successfully")
+        navigate('/')
+        toggleUser()
+      }
+     
+    }
   return (
     <div className='relative'>
     <div className='flex flex-row item-center gap-3'>
@@ -42,14 +61,14 @@ const UserMenu = ({currentUser,UserMenu}) => {
             text-sm
             '>
         <div className='flex flex-col cursor-pointer mx-2'>
-        {/* {currentUser ?(
+        {user ?(
           <>
-            <MenuItems onclick={()=>{}} label= "My trips"/>
-            <MenuItems onclick={()=>{}} label= "My Favourite"/>
-            <MenuItems onclick={()=>{}} label= "My properties"/>
+            <MenuItems onclick={()=>{}} label= "My profile"/>
+            <MenuItems onclick={()=>{}} label= "My accommodation"/>
+            <MenuItems onclick={()=>{}} label= "My bookings"/>
             <MenuItems onclick={()=>{}} label= "HomeStay my home "/>
             <hr />
-            <MenuItems onclick={()=>{}} label= "Logout"/>
+            <MenuItems onclick={logoutUser} label= "Logout"/>
         </>
 
         ):(
@@ -57,12 +76,8 @@ const UserMenu = ({currentUser,UserMenu}) => {
             <MenuItems onclick={loginModel.onOpen} label= "Login"/>
             <MenuItems onclick={registerModel.onOpen} label= "Sign Up"/>
         </>
-        )} */}
-        <>
-            <MenuItems onclick={loginModel.onOpen} label= "Login"/>
-            <MenuItems onclick={registerModel.onOpen} label= "Sign Up"/>
-        </>
-        
+        )}
+    
 
         </div>
         </div>

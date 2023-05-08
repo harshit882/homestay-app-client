@@ -8,9 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 function Header() {
   const {user} = useContext(UserContext)
-  function currentUser() {
-    return null;
-  }
+  
   // console.log(user)
   return (
     <div className="header fixed w-full bg-white z-10 shadow-sm ">
@@ -30,7 +28,7 @@ function Header() {
           </div>
         </Container>
       </div>
-      <UserMenu currentUser={currentUser} user={user} />
+      <UserMenu user={user} />
       {/* Hi lol */}
     </div>
   );

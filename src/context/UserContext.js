@@ -14,11 +14,12 @@ function provideUserIfAlreadyLoggedIn(setUser,userInfoProvided){
 
 export const UserContextProvider =({children})=>{
     const [user , setUser] =useState(null)
+    const [ready , setReady] =useState(false)
     const isLoggedIn =localStorage.getItem("isLoggedIn")
     provideUserIfAlreadyLoggedIn(setUser,user)
     return(
         
-        <UserContext.Provider value={{user ,setUser,isLoggedIn}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{user ,setUser,isLoggedIn,provideUserIfAlreadyLoggedIn}}>{children}</UserContext.Provider>
     
 
     );
