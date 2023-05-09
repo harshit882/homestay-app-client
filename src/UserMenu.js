@@ -12,6 +12,11 @@ import { Link } from 'react-router-dom'
 
 
 const UserMenu = ({user}) => {
+
+const switchRouteIfLoggedIn =useCallback(()=>{
+  navigate('/account')
+},[user])
+
   // const navigate =useNavigate()
   const navigate =useNavigate()
   const registerModel =useRegisterModel()
@@ -63,9 +68,13 @@ const UserMenu = ({user}) => {
         <div className='flex flex-col cursor-pointer mx-2'>
         {user ?(
           <>
-            <MenuItems onclick={()=>{}} label= "My profile"/>
-            <MenuItems onclick={()=>{}} label= "My accommodation"/>
-            <MenuItems onclick={()=>{}} label= "My bookings"/>
+            <MenuItems onclick={switchRouteIfLoggedIn} label= "My profile"/>
+            <MenuItems onclick={()=>{
+              navigate('/account/accommodation')
+            }} label= "My accommodation"/>
+            <MenuItems onclick={()=>{
+              navigate('/account/bookings')
+            }} label= "My bookings"/>
             <MenuItems onclick={()=>{}} label= "HomeStay my home "/>
             <hr />
             <MenuItems onclick={logoutUser} label= "Logout"/>

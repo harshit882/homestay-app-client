@@ -28,8 +28,7 @@ function App() {
          
     <Route path='/' element= {<Home/>}/>
     <Route path='/account/:subpage?' element= {<Account/>}/>
-    {/* <Route path='/account/bookings' element= {<Account/>}/>
-    <Route path='/account/accommodation' element= {<Account/>}/> */}
+    <Route path='/account/:subpage?/:action?' element= {<Account/>}/>
    
     </Routes>
     <Footer/>
