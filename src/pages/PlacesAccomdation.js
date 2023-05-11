@@ -1,9 +1,32 @@
-import React from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Perks from "../Perks";
+
 
 const PlacesAccomdation = () => {
+    // variables to manage state of a form
+    const [title ,setTitle] =useState('')
+    const [address ,setAddress] =useState('')
+    const [addedPhotos ,setAddedPhotos] =useState([])
+    const [photoLink ,setPhotoLink] =useState('')
+    const [description ,setDescription] =useState('')
+    const [perks, setPerks] =useState([])
+    const [extraInfo, setExtraInfo] =useState('')
+    const [checkIn , setCheckIn] =useState('')
+    const [checkOut , setCheckOut] =useState('')
+    const [MaxGuests , setMaxGuests] =useState(1)
+
+    
   const { action } = useParams();
-  // console.log(action)
+    function addPhotoByInputLink(url) {
+        setPhotoLink(<img src={url} alt={`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+      </svg>`}
+      />
+      )
+        setAddedPhotos([...addedPhotos ,photoLink])
+        return addedPhotos
+    }
   return (
     <>
       {action !== "new" && (
@@ -46,6 +69,8 @@ const PlacesAccomdation = () => {
                   className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="grid-first-name"
                   type="text"
+                  value={title}
+                  onChange={e=>setTitle(e.target.value)}
                   placeholder="title, for example : My lovelu apt"
                 />
               </div>
@@ -60,6 +85,8 @@ const PlacesAccomdation = () => {
                   className="appearance-none block w-full  bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-last-name"
                   type="text"
+                  value={address}
+                  onChange={e=>setAddress(e.target.value)}
                   placeholder="address"
                 />
               </div>
@@ -79,75 +106,121 @@ const PlacesAccomdation = () => {
                     type="text"
                     className="appearance-none block bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flex-grow"
                     placeholder={"Add using a link ....jpg"}
+                    value={photoLink}
+                    onChange={e=>setPhotoLink(e.target.value)}
                   />
                   <button className="bg-red-400 text-white rounded-md h-full py-3 px-4 mb-3">
                     Add photo
                   </button>
                 </div>
-                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 mt-2 ">
-                  <button className="border bg-white rounded-2xl text-2xl p-8">
+                <div className=" grid-cols-3 md:grid-cols-4 lg:grid-cols-6 mt-2 ">
+                <button className="border bg-white rounded-2xl text-xl p-8 flex gap-1 justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8    h-8 mt-0.75">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                </svg>
+
                     Upload
                   </button>
                 </div>
-              </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-2">
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <div className="w-full  px-3 mb-6 md:mb-0 -mx-3 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-city"
+                  className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
                 >
-                  City
+                  Description
+                  {/* <p className="text-light">tell more about your place</p> */}
                 </label>
-                <input
-                  className="appearance-none block w-full  bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-city"
+                
+
+                <textarea
+                  className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rouded-md"
+                  id="grid-first-name"
                   type="text"
-                  placeholder="Albuquerque"
+                  placeholder="tell more about your place"
+                  value={description}
+                  onChange={e=>setDescription(e.target.value)}
+                  cols={60}
+                  rows={5}
                 />
               </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+
+            <Perks selected={perks} onchange={setPerks}/>
+              <div className="w-full  px-3 mb-6 md:mb-0 -mx-3 mt-6">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-state"
+                  className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
                 >
-                  State
+                  Extra Info
+                  {/* <p className="text-light">tell more about your place</p> */}
                 </label>
-                <div className="relative">
-                  <select
-                    className="block appearance-none w-full  bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state"
-                  >
-                    <option>New Mexico</option>
-                    <option>Missouri</option>
-                    <option>Texas</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
+                
+
+                <textarea
+                  className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-md"
+                  id="grid-first-name"
+                  type="text"
+                  placeholder="for eg. house rules and regulations"
+                  value={extraInfo}
+                  onChange={e=>setExtraInfo(e.target.value)}
+                  cols={60}
+                  rows={2}
+                />
+              </div>
+              <div className="w-full  px-3 mb-6 md:mb-0 -mx-3 mt-6">
+                <label
+                  className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
+                >
+                  Check in&out time
+                 
+                </label>
+                 <p className="text-cyan-600 font-serif font-thin">add check in&out time ,remember to have some time window for room cleaning</p>
+                <div className="grid sm:grid-cols-3 mt-2 gap-2">
+                <div className="-mb-1">
+                <p className=" font-serif font-thin">Check in time</p>
+                <input
+                  className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
+                  id="grid-first-name"
+                  type="text"
+                  placeholder="eg. 12:00 pm"
+                  value={checkIn}
+                  onChange={e=>setCheckIn(e.target.value)}
+                
+                />
                 </div>
-              </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  for="grid-zip"
-                >
-                  Zip
-                </label>
+                <div className="-mb-1">
+                <p className=" font-serif font-thin">Check out time</p>
                 <input
-                  className="appearance-none block w-full  bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-zip"
+                  className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
+                  id="grid-first-name"
                   type="text"
-                  placeholder="90210"
+                  placeholder="eg. 11:00 am"
+                  value={checkOut}
+                  onChange={e=>setCheckOut(e.target.value)}
+                  
                 />
+                </div>
+                <div className="-mb-1">
+                <p className=" font-serif font-thin">Max guests</p>
+                <input
+                  className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
+                  id="grid-first-name "
+                  type="number"
+                  max={4}
+                  min={1}
+                  value={MaxGuests}
+                  onChange={e=>setMaxGuests(e.target.value)}
+                />
+                </div>
+                </div>
+             
+              </div>
               </div>
             </div>
+     
+            <button className="w-full rounded-full bg-red-400 text-white h-full py-3 px-4 mb-3">
+                    Save 
+                  </button>
           </form>
         </div>
       )}
