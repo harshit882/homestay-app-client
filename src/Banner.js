@@ -9,7 +9,7 @@ function Banner() {
   const [showSearch, setShowSearch] = useState(false);
   const [showText, setShowText] = useState("Search Dates");
   return (
-    <div className="banner">
+    <div className="banner w-full">
       <div className="banner__search">
         <Button
           variant="outlined"

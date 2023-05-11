@@ -15,10 +15,9 @@ function Home() {
   }
 
   return (
-    <div className="flex justify-center items-center bg-slate-100">
-      {/* <h1>home component</h1> */}
-      {/* <h4 className='text-rose-500 text-2xl'>Airbnb</h4> */}
-      {/* <Banner /> */}
+    <div className="flex flex-col justify-center items-center bg-slate-100">
+      <Banner />
+      <br />
       <div className="flex flex-wrap justify-center gap-6 m-10 p-5">
         {places?.map((place) => (
           <Card
