@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Perks from "../Perks";
+import axios from "axios";
 
 
 const PlacesAccomdation = () => {
@@ -18,14 +19,33 @@ const PlacesAccomdation = () => {
 
     
   const { action } = useParams();
-    function addPhotoByInputLink(url) {
-        setPhotoLink(<img src={url} alt={`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-      </svg>`}
-      />
-      )
-        setAddedPhotos([...addedPhotos ,photoLink])
-        return addedPhotos
+    async function addPhotoByInputLink(e) {
+      e.preventDefault()
+      const {data:filename}=await axios.post('https://homestay-app-server.cyclic.app/upload', {link:photoLink})
+      setAddedPhotos((previous)=>{
+       return [...previous, filename]
+      })
+      setPhotoLink('')
+    }
+
+    function uploadByLaptop(e) {
+      const files = e.target.files
+      console.log({files})
+      const data =new FormData()
+      for(let i=0 ; i < files.length; i++) {
+        data.append('photos',files[i])
+      }
+      
+      axios.post('https://homestay-app-server.cyclic.app/upload', data, {
+        headers:{'Content-type': 'multipart/form-data'}
+      } )
+      .then((response)=>{
+        const {data:filenames} =response
+        setAddedPhotos((previous)=>{
+          return [...previous, ...filenames]
+         })
+        // console.log(data)
+      })
     }
   return (
     <>
@@ -109,18 +129,26 @@ const PlacesAccomdation = () => {
                     value={photoLink}
                     onChange={e=>setPhotoLink(e.target.value)}
                   />
-                  <button className="bg-red-400 text-white rounded-md h-full py-3 px-4 mb-3">
+                  <button onClick={addPhotoByInputLink} className="bg-red-400 text-white rounded-md h-full py-3 px-4 mb-3">
                     Add photo
                   </button>
                 </div>
-                <div className=" grid-cols-3 md:grid-cols-4 lg:grid-cols-6 mt-2 ">
-                <button className="border bg-white rounded-2xl text-xl p-8 flex gap-1 justify-center">
+                <div className=" grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6 mt-2 ">
+                {addedPhotos.length > 0 && addedPhotos.map((link)=>{
+                  <div>
+                    {/* {link} */}
+                    <img className="rounded-2xl" src={''} alt="" />
+                  </div>
+                })}
+              
+                <label className="w-2/6 cursor-pointer border bg-white rounded-2xl text-xl p-4 items-center flex gap-1">
+                <input type="file" className="hidden" multiple onChange={uploadByLaptop} />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8    h-8 mt-0.75">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                 </svg>
 
                     Upload
-                  </button>
+                  </label>
                 </div>
                 <div className="w-full  px-3 mb-6 md:mb-0 -mx-3 mt-6">
                 <label
