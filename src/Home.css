@@ -1,4 +1,6 @@
-.home__section{
-    display: flex;
-    padding: 30px;
+.home__section {
+  display: flex;
+  padding: 30px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
