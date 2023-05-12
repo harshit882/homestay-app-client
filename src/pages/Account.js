@@ -29,7 +29,7 @@ const Account = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <div className="w-full flex mt-8 justify-center gap-4">
         <Link to={"/account"} className={linkClass("profile")}>
           <svg

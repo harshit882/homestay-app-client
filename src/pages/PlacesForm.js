@@ -3,6 +3,7 @@ import Perks from "../Perks";
 // import Perks from "../Perks";
 import axios from "axios";
 import Image from "../components/Image";
+import { toast } from "react-hot-toast";
 
 const PlacesForm = () => {
   const [title, setTitle] = useState("");
@@ -37,13 +38,18 @@ const PlacesForm = () => {
       data.append("photos", files[i]);
     }
 
-    const { data: filenames } = await axios.post(
-      "https://homestay-app-server.cyclic.app/upload",
-      data,
-      {
+    const { data: filenames } = await axios
+      .post("https://homestay-app-server.cyclic.app/upload", data, {
         headers: { "Content-type": "multipart/form-data" },
-      }
-    );
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Image uploaded successfully");
+        }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
 
     setAddedPhotos((prev) => {
       return [...prev, ...filenames];
@@ -88,11 +94,17 @@ const PlacesForm = () => {
       },
       withCredentials: true,
     };
-    await axios.post(
+    const response = await axios.post(
       `https://homestay-app-server.cyclic.app/places/add-places`,
       placeData,
       config
     );
+
+    if (response.status === 200) {
+      toast.success("Add new place successfully");
+    } else {
+      toast.error("Add new place failed");
+    }
   }
   return (
     <div>

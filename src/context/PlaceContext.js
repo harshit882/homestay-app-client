@@ -9,7 +9,7 @@ export const PlaceProvider = ({ children }) => {
   useEffect(() => {
     const getPlaces = async () => {
       const { data } = await axios.get(
-        "https://airbnb-clone-production.up.railway.app/places"
+        "https://homestay-app-server.cyclic.app/places"
       );
       console.log(data);
       setPlaces(data.places);
