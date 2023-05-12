@@ -89,7 +89,7 @@ const PlacesForm = () => {
       withCredentials: true,
     };
     await axios.post(
-      `http://localhost:3002/places/add-places`,
+      `https://homestay-app-server.cyclic.app/places/add-places`,
       placeData,
       config
     );
