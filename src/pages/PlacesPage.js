@@ -61,7 +61,7 @@ const PlacesPage = () => {
           Add new place
         </Link>
       </div>
-      <div className="mt-4 ">
+      <div className="m-4 p-10">
         {places.length > 0 &&
           places.map((place) => <PlaceCard place={place} key={place._id} />)}
       </div>
