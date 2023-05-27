@@ -9,7 +9,7 @@ export const PlaceProvider = ({ children }) => {
   useEffect(() => {
     const getPlaces = async () => {
       const { data } = await axios.get(
-        "https://homestay-app-server.cyclic.app/places"
+        "https://homestay-app-server.azurewebsites.net/places"
       );
       console.log(data);
       setPlaces(data.places);

@@ -33,7 +33,7 @@ const RegisterModel = () => {
       setIsLoading(true);
       // write it in fetch
       const res = await fetch(
-        "https://homestay-app-server.cyclic.app/user/register",
+        "https://homestay-app-server.azurewebsites.net/user/register",
         {
           method: "POST",
           body: JSON.stringify(data),
