@@ -4,6 +4,7 @@ import Perks from "../Perks";
 import axios from "axios";
 import Image from "../components/Image";
 import { toast } from "react-hot-toast";
+const { Navigate, useNavigate } = require("react-router-dom");
 
 const PlacesForm = () => {
   const [title, setTitle] = useState("");
@@ -18,10 +19,13 @@ const PlacesForm = () => {
   const [MaxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(0);
 
+  const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+
   async function addPhotoByInputLink(e) {
     e.preventDefault();
     const { data: filename } = await axios.post(
-      "https://homestay-app-server.cyclic.app/upload-by-link",
+      "https://homestay-app-server.azurewebsites.net/upload-by-link",
       { link: photoLink }
     );
     setAddedPhotos((previous) => {
@@ -32,28 +36,34 @@ const PlacesForm = () => {
 
   async function uploadByLaptop(e) {
     const files = e.target.files;
-    console.log({ files });
+    // console.log({ files });
     const data = new FormData();
     for (let i = 0; i < files.length; i++) {
       data.append("photos", files[i]);
     }
 
-    const { data: filenames } = await axios
-      .post("https://homestay-app-server.cyclic.app/upload", data, {
+    const response = await axios.post(
+      "https://homestay-app-server.azurewebsites.net/upload",
+      data,
+      {
         headers: { "Content-type": "multipart/form-data" },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success("Image uploaded successfully");
-        }
-      })
-      .catch((err) => {
-        toast.error("Something went wrong");
-      });
+      }
+    );
 
-    setAddedPhotos((prev) => {
-      return [...prev, ...filenames];
-    });
+    if (response.status === 200) {
+      toast.success("Image uploaded successfully");
+      const filenames = response?.data;
+      setAddedPhotos((prev) => {
+        return [...prev, ...filenames];
+      });
+      setRedirect(true);
+    } else {
+      toast.error("Something went wrong");
+    }
+  }
+
+  if (redirect) {
+    <Navigate to="/" />;
   }
 
   const removePhoto = (filename) => {
@@ -95,7 +105,7 @@ const PlacesForm = () => {
       withCredentials: true,
     };
     const response = await axios.post(
-      `https://homestay-app-server.cyclic.app/places/add-places`,
+      `https://homestay-app-server.azurewebsites.net/places/add-places`,
       placeData,
       config
     );
