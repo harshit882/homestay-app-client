@@ -10,11 +10,17 @@ function Card({ src, title, description, price }) {
           {description}
         </p>
       </div>
-      <div className="px-6 pt-4 pb-2">
+      {/* <div className="px-6 pt-4 pb-2 flex flex-row items-center space-between md:space-x-16"> */}
+      <div className="px-6 pt-4 pb-2 flex flex-row items-center space-between justify-between">
         <span className="inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
           Price ₹{price}
         </span>
+        {/* <button class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"> */}
+        <button class=" rounded-full bg-red-400 text-white h-full py-3 px-4 mb-3 " onClick={()=>{}}>
+    Button
+</button>
       </div>
+      
     </div>
   );
 }

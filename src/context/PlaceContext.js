@@ -15,11 +15,13 @@ export const PlaceProvider = ({ children }) => {
       setPlaces(data.places);
       setLoading(false);
     };
+    
     getPlaces();
   }, []);
+  
 
   return (
-    <PlaceContext.Provider value={{ places, setPlaces, setLoading }}>
+    <PlaceContext.Provider value={{ places, loading,setPlaces, setLoading }}>
       {children}
     </PlaceContext.Provider>
   );

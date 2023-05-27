@@ -4,6 +4,7 @@ import Perks from "../Perks";
 import axios from "axios";
 import Image from "../components/Image";
 import { toast } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 const PlacesForm = () => {
   const [title, setTitle] = useState("");
@@ -17,6 +18,7 @@ const PlacesForm = () => {
   const [checkOut, setCheckOut] = useState("");
   const [MaxGuests, setMaxGuests] = useState(1);
   const [price, setPrice] = useState(0);
+  const [redirect ,setRedirect] =useState(false)
 
   async function addPhotoByInputLink(e) {
     e.preventDefault();
@@ -45,6 +47,7 @@ const PlacesForm = () => {
       .then((res) => {
         if (res.status === 200) {
           toast.success("Image uploaded successfully");
+          
         }
       })
       .catch((err) => {
@@ -105,6 +108,10 @@ const PlacesForm = () => {
     } else {
       toast.error("Add new place failed");
     }
+    setRedirect(true)
+  }
+  if(redirect) {
+    return <Navigate to={'/account/accommodation'}/>
   }
   return (
     <div>

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 const UserMenu = ({ user }) => {
   const switchRouteIfLoggedIn = useCallback(() => {
     navigate("/account");
+    
   }, [user]);
 
   // const navigate =useNavigate()

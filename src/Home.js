@@ -11,14 +11,17 @@ function Home() {
   const { places, loading } = useContext(PlaceContext);
 
   if (loading) {
-    return <Spinner />;
+    return(
+      <Spinner />
+    )
+    
   }
 
   return (
     <div className="flex flex-col justify-center items-center bg-slate-100">
       <Banner />
       <br />
-      <div className="flex flex-wrap justify-center gap-6 m-10 p-5">
+      <div className="grid grid-cols-4 cursor-pointer justify-center gap-6 my-14 p-5">
         {places?.map((place) => (
           <Card
             key={place._id}

@@ -15,7 +15,7 @@ const PlacesAccomdation = () => {
       {action !== "new" && (
         <div className="my-4  text-center">
           <Link
-            className="inline-flex bg-red-400 text-white rounded-full px-6 py-2 "
+            className="inline-flex bg-red-400 text-white rounded-full px-6 py-2 mb-4"
             to={"/account/accommodation/new"}
           >
             <svg
@@ -34,6 +34,9 @@ const PlacesAccomdation = () => {
             </svg>
             Add new place
           </Link>
+          <br/>
+          List of added places
+         
         </div>
       )}
       {action === "new" && (
