@@ -21,7 +21,7 @@ const PlacesForm = () => {
   const [price, setPrice] = useState(0);
 
   const [loading, setLoading] = useState(false);
-  const [redirect, setRedirect] = useState(false);
+  const [redirectto, setRedirectTo] = useState(false);
 
   async function addPhotoByInputLink(e) {
     e.preventDefault();
@@ -57,16 +57,13 @@ const PlacesForm = () => {
       setAddedPhotos((prev) => {
         return [...prev, ...filenames];
       });
-      setRedirect(true);
+    
     } else {
       toast.error("Something went wrong");
     }
   }
 
-  if (redirect) {
-    <Navigate to="/" />;
-  }
-
+  
   const removePhoto = (filename) => {
     setAddedPhotos([...addedPhotos.filter((photo) => photo !== filename)]);
   };
@@ -116,9 +113,9 @@ const PlacesForm = () => {
     } else {
       toast.error("Add new place failed");
     }
-    setRedirect(true)
+    setRedirectTo(true)
   }
-  if(redirect) {
+  if(redirectto) {
     return <Navigate to={'/account/accommodation'}/>
   }
   return (
