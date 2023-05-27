@@ -17,6 +17,7 @@ import LoginModel from "./LoginModel";
 import { UserContextProvider } from "./context/UserContext";
 import { PlaceProvider } from "./context/PlaceContext";
 import Account from "./pages/Account";
+import PlacePage from "./pages/PlacePage";
 function App() {
   // const location =useLocation()
   // console.log(location)
@@ -30,11 +31,12 @@ function App() {
             <LoginModel />
             <Header />
             <Routes>
-              <Route path="search" element={<SearchPage />} />
+              <Route path="/search" element={<SearchPage />} />
 
               <Route path="/" element={<Home />} />
               <Route path="/account/:subpage?" element={<Account />} />
               <Route path="/account/:subpage?/:action?" element={<Account />} />
+              <Route path="/account/bookings/:id" element ={<PlacePage/>} />
             </Routes>
             <Footer />
           </Router>

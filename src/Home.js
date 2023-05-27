@@ -22,7 +22,9 @@ function Home() {
       <Banner />
       <br />
       <div className="grid grid-cols-4 cursor-pointer justify-center gap-6 my-14 p-5">
+      
         {places?.map((place) => (
+          <Link to={'/account/bookings/'+place._id}>
           <Card
             key={place._id}
             src={place.photos?.[0]}
@@ -30,6 +32,7 @@ function Home() {
             description={place.description}
             price={place.price}
           />
+          </Link>
         ))}
       </div>
     </div>
