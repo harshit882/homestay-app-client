@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Image from './Image';
+import React, { useState } from "react";
+import Image from "./Image";
 
 const PlaceGallery = ({ place }) => {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
@@ -8,10 +8,10 @@ const PlaceGallery = ({ place }) => {
     return (
       <div className="absolute inset-0 bg-black text-white  min-h-full ">
         <div className="p-8 bg-black grid gap-4 mt-20">
-          <div className=''>
+          <div className="">
             <h2 className="text-3xl mr-36 mt-10">Photos of {place.title}</h2>
             <button
-              className="fixed right-12 top-8 flex gap-1 py-2 px-4 rounded-2xl absolute top-60 bg-white text-black shadow shadow-gray-500 "
+              className="right-20 top-25 flex gap-1 py-2 px-4 rounded-2xl absolute top-60 bg-white text-black shadow shadow-gray-500 "
               onClick={() => setShowAllPhotos(false)}
             >
               <svg

@@ -7,8 +7,8 @@ import UserMenu from "./UserMenu";
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 function Header() {
-  const {user} = useContext(UserContext)
-  
+  const { user } = useContext(UserContext);
+
   // console.log(user)
   return (
     <div className="header fixed w-full bg-white z-10 shadow-sm ">
@@ -24,7 +24,6 @@ function Header() {
         <Container>
           <div className="flex flex-row item-center justify-between gap-3 md:gap-0">
             <SearchInput />
-            
           </div>
         </Container>
       </div>

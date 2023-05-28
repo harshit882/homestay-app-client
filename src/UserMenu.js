@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
 import MenuItems from "./MenuItems";
@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const UserMenu = ({ user }) => {
   const switchRouteIfLoggedIn = useCallback(() => {
     navigate("/account");
-    
   }, [user]);
 
   // const navigate =useNavigate()
@@ -25,6 +24,21 @@ const UserMenu = ({ user }) => {
     setIsOpen((value) => !value);
   }, []);
   const { setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest(".menu")) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
   function logoutUser() {
     if (user) {
       setUser(null);
@@ -35,7 +49,7 @@ const UserMenu = ({ user }) => {
     }
   }
   return (
-    <div className="relative">
+    <div className="relative menu">
       <div className="flex flex-row item-center gap-3">
         <div
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
