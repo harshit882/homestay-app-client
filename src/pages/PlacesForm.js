@@ -4,8 +4,7 @@ import Perks from "../Perks";
 import axios from "axios";
 import Image from "../components/Image";
 import { toast } from "react-hot-toast";
-// import { Navigate } from "react-router-dom";
-const { Navigate, useNavigate } = require("react-router-dom");
+import { Navigate, useNavigate } from "react-router-dom";
 
 const PlacesForm = () => {
   const [title, setTitle] = useState("");
@@ -57,13 +56,11 @@ const PlacesForm = () => {
       setAddedPhotos((prev) => {
         return [...prev, ...filenames];
       });
-    
     } else {
       toast.error("Something went wrong");
     }
   }
 
-  
   const removePhoto = (filename) => {
     setAddedPhotos([...addedPhotos.filter((photo) => photo !== filename)]);
   };
@@ -113,10 +110,10 @@ const PlacesForm = () => {
     } else {
       toast.error("Add new place failed");
     }
-    setRedirectTo(true)
+    setRedirectTo(true);
   }
-  if(redirectto) {
-    return <Navigate to={'/account/accommodation'}/>
+  if (redirectto) {
+    return <Navigate to={"/account/accommodation"} />;
   }
   return (
     <div>

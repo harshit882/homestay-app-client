@@ -4,6 +4,7 @@ import { UserContext } from "../context/UserContext";
 import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PlacesAccomdation from "./PlacesAccomdation";
+import Bookings from "./Bookings";
 
 const Account = () => {
   const { user, ready } = useContext(UserContext);
@@ -93,11 +94,7 @@ const Account = () => {
           </div>
         )}
         {subpage === "accommodation" && <PlacesAccomdation />}
-        {subpage === "bookings" && (
-          <div className="text-center margin-auto mx-w-lg mt-8 mb-8">
-            No bookings yet
-          </div>
-        )}
+        {subpage === "bookings" && <Bookings />}
       </div>
     </div>
   );

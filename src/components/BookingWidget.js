@@ -1,17 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { differenceInDays } from 'date-fns';
-import axios from 'axios';
-import { Navigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import React, { useContext, useEffect, useState } from "react";
+import { differenceInDays } from "date-fns";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import { toast } from "react-hot-toast";
 // import Spinner from './Spinner';
- 
+
 const BookingWidget = ({ place }) => {
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
   const [noOfGuests, setNoOfGuests] = useState(1);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [redirect, setRedirect] = useState('');
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [redirect, setRedirect] = useState("");
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -26,20 +27,37 @@ const BookingWidget = ({ place }) => {
   }
 
   const handleBooking = async () => {
-    if(user=== null) {
-        return <Navigate to ={"/"}/>
+    console.log("booking called");
+    if (user === null) {
+      return <Navigate to={"/"} />;
     }
-    const response = await axios.post('https://homestay-app-server.azurewebsites.net/bookings', {
-      checkIn,
-      checkOut,
-      noOfGuests,
-      name,
-      phone,
-      place: place._id,
-      price: numberOfNights * place.price,
-      perks: place.perks,
-    });
-    
+    const dataKey = JSON.parse(localStorage.getItem("dataKey"));
+    const token = dataKey.token;
+    const response = await axios.post(
+      "https://homestay-app-server.azurewebsites.net/bookings",
+      {
+        checkIn,
+        checkOut,
+        noOfGuests,
+        name,
+        phone,
+        place: place._id,
+        price: numberOfNights * place.price,
+        perks: place.perks,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      toast.error("Something went wrong");
+      return;
+    } else {
+      toast.success("Booking successful");
+    }
 
     const bookingId = response.data._id;
 
@@ -66,13 +84,13 @@ const BookingWidget = ({ place }) => {
               type="date"
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
-              className='appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl'
+              className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
             />
           </div>
           <div className="py-3 px-4 border-l">
             <label>Check out: </label>
             <input
-            className='appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl'
+              className="appearance-none block w-full bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
               type="date"
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
@@ -80,9 +98,9 @@ const BookingWidget = ({ place }) => {
           </div>
         </div>
         <div className="pt-2 px-4 border-t flex flex-row gap-2  ">
-          <label >Number of guests: </label>
+          <label>Number of guests: </label>
           <input
-          className='appearance-none block w-auto bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl'
+            className="appearance-none block w-auto bg-white text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
             type="number"
             max={8}
             min={1}
@@ -92,32 +110,35 @@ const BookingWidget = ({ place }) => {
         </div>
         {numberOfNights > 0 && (
           <div className="pb-2 px-4 border-t grid grid-cols-2 ">
-          <div>
-          <label>Your full name: </label>
-            <input
-            className='appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl'
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div>
-          <label>Phone number: </label>
-            <input
-            className='appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl'
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div>
-           
-           
+            <div>
+              <label>Your full name: </label>
+              <input
+                className="appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Phone number: </label>
+              <input
+                className="appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
           </div>
         )}
       </div>
-      <button onClick={()=>handleBooking} className="rounded-full bg-red-400 text-white h-full py-3 px-4 ml-3 mb-3">
+      <button
+        onClick={handleBooking}
+        className="rounded-full bg-red-400 text-white h-full py-3 px-4 ml-3 mb-3"
+      >
         Book this place
-        {numberOfNights > 0 && <span> for ₹{numberOfNights * place.price}</span>}
+        {numberOfNights > 0 && (
+          <span> for ₹{numberOfNights * place.price}</span>
+        )}
       </button>
     </div>
   );
