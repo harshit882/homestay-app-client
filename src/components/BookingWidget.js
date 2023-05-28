@@ -76,7 +76,8 @@ const BookingWidget = ({ place }) => {
         Price: ₹{place.price} / per night
       </div>
       <div className="text-xl text-center">
-        Available facilities: {place.perks}
+      {/* {console.log(place.perks)} */}
+        Available facilities: {`${place.perks} `}
       </div>
       <div className="border rounded-2xl mt-4">
         <div className="flex">
