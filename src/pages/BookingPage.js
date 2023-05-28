@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 
-const BookingPage = () => {
+const BookingPageView = () => {
     const {id} =useParams()
   return (
     <div>
@@ -9,4 +9,4 @@ const BookingPage = () => {
   )
 }
 
-export default BookingPage
+export default BookingPageView

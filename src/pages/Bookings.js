@@ -12,7 +12,7 @@ const BookingsPage = () => {
     const getBookings = async () => {
       const dataKey = JSON.parse(localStorage.getItem("dataKey"));
       const token = dataKey.token;
-      const { data } = await axios.get("http://localhost:3002/bookings", {
+      const { data } = await axios.get( "https://homestay-app-server.azurewebsites.net/bookings", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,17 +25,18 @@ const BookingsPage = () => {
   return (
     <div>
       {/* <AccountNav /> */}
-      <div>
+      <div className="relative">
         {bookings?.length > 0 &&
           bookings.map((booking) => (
+            
             <Link
               to={`/account/bookings/${booking._id}`}
-              className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden my-2"
+              className="flex gap-4 ml-4 mr-4 mb-4 bg-gray-200 rounded-2xl overflow-hidden my-2 relative"
             >
-              <div className="w-48">
+              <div className="w-48 ">
                 <PlaceImg place={booking.place} />
               </div>
-              <div className="py-3 pr-3 grow">
+              <div className="py-3 pr-3 grow ">
                 <h2 className="text-xl">{booking.place.title}</h2>
                 <div className="text-xl">
                   <div className="flex gap-2 border-t "></div>
@@ -44,8 +45,8 @@ const BookingsPage = () => {
                       booking={booking}
                       className="items-center mb-2 mt-4  text-gray-600"
                     />
-
-                    <div className="flex gap-1 items-center">
+                      
+                    <div className="flex gap-1 items-center ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -63,12 +64,22 @@ const BookingsPage = () => {
                       <span className="text-2xl">
                         Total price: ₹{booking.price}
                       </span>
+          
                     </div>
+                 
                   </div>
                 </div>
               </div>
+             
+            
+
+       
+             
+             
             </Link>
+            
           ))}
+        
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-function BookingsPage() {
+function BookingsPages() {
 
   return (
     <div>
@@ -7,4 +7,4 @@ function BookingsPage() {
   )
 }
 
-export default BookingsPage
+export default BookingsPages
