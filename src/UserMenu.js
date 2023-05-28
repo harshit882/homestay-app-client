@@ -55,25 +55,12 @@ const UserMenu = ({ user }) => {
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
           onClick={toggleUser}
         >
-          {user ? (
-            <div className="bg-slate-400">{user?.name}</div>
-          ) : (
-            <div className="flex flex-row items-center gap-2">
-              <div className="text-sm font-semibold">Login</div>
-              <div className="p-2 bg-rose-500 rounded-full text-white">
-                Haha
-              </div>
+          <Avatar user={user} />
+          {!user && (
+            <div className="flex items-center mr-6">
+              <AiOutlineMenu />
             </div>
           )}
-        </div>
-        <div
-          className="p-4 md:px-1 border-[1px] border-neutral-200 flex flex-row item-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
-          onClick={toggleUser}
-        >
-          <AiOutlineMenu />
-          <div className="hidden md:block">
-            <Avatar />
-          </div>
         </div>
       </div>
       {isOpen && (
