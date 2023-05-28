@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { differenceInDays } from "date-fns";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { toast } from "react-hot-toast";
 // import Spinner from './Spinner';
 
 const BookingWidget = ({ place }) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [noOfGuests, setNoOfGuests] = useState(1);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [redirect, setRedirect] = useState("");
+  const [redirect, setRedirect] = useState("/");
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -28,17 +28,13 @@ const BookingWidget = ({ place }) => {
   }
 
   const handleBooking = async () => {
-    
     console.log("booking called");
     if (user === null) {
-        toast.error("Please login first")
-        // debugger
-        return navigate('/')
-         
-
-
+      toast.error("Please login first");
+      // debugger
+      return navigate("/");
     }
-    
+
     const dataKey = JSON.parse(localStorage.getItem("dataKey"));
     const token = dataKey.token;
     const response = await axios.post(
@@ -62,21 +58,17 @@ const BookingWidget = ({ place }) => {
     const bookingId = response.data.booking._id;
     // console.log(bookingId)
 
-    setRedirect(`/account/bookings/${bookingId}`);
+    // setRedirect(`/account/bookings/${bookingId}`);
     // console.log(redirect)
     if (response.status !== 200) {
       toast.error("Something went wrong");
       return;
     } else {
+      setRedirect("/account/bookings");
       toast.success("Booking successful");
-    //   debugger
-      return <Navigate to={redirect}/>
-    // return navigate(`${redirect}`)
+      navigate("/account/bookings");
     }
-
   };
-
-  
 
   return (
     <div className="bg-rose-100 shadow p-4 rounded-2xl">
@@ -124,7 +116,7 @@ const BookingWidget = ({ place }) => {
               <label>Your full name: </label>
               <input
                 className="appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
-                style={{width:'12vw'}}
+                style={{ width: "12vw" }}
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -134,7 +126,7 @@ const BookingWidget = ({ place }) => {
               <label>Phone number: </label>
               <input
                 className="appearance-none block  bg-white text-gray-700 border border-red-500 rounded-md py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white rounded-2xl"
-                style={{width:'12vw'}}
+                style={{ width: "12vw" }}
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
