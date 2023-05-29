@@ -22,11 +22,12 @@ function Header() {
       <div className="py-4 border-b-[1px]">
         {/* <Container anything/> */}
         <Container>
-          <div className="flex flex-row item-center justify-between gap-3 md:gap-0">
+          <div className="flex flex-col item-center justify-center gap-3 md:gap-0">
             {/* <SearchInput /> */}
-            <div className="text-3xl text-gray-500 italic font-serif font-extrabold">
+            <div className="text-4xl text-green-600 italic font-serif font-extrabold">
               Homestays
             </div>
+            <p className="px-7 text-sm text-gray-500">Uncover hidden gems.</p>
           </div>
         </Container>
       </div>
