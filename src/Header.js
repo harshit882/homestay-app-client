@@ -23,7 +23,10 @@ function Header() {
         {/* <Container anything/> */}
         <Container>
           <div className="flex flex-row item-center justify-between gap-3 md:gap-0">
-            <SearchInput />
+            {/* <SearchInput /> */}
+            <div className="text-3xl text-gray-500 italic font-serif font-extrabold">
+              Homestays
+            </div>
           </div>
         </Container>
       </div>

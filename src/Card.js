@@ -16,11 +16,10 @@ function Card({ src, title, description, price }) {
           Price ₹{price}
         </span>
         {/* <button class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"> */}
-        <button class=" rounded-full bg-red-400 text-white h-full py-3 px-4 mb-3 " onClick={()=>{}}>
+        {/* <button class=" rounded-full bg-red-400 text-white h-full py-3 px-4 mb-3 " onClick={()=>{}}>
     Button
-</button>
+</button> */}
       </div>
-      
     </div>
   );
 }
