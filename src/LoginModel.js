@@ -35,7 +35,7 @@ const LoginModel = () => {
   const onsubmit = async (data) => {
     setIsLoading(true);
     const userInfo = await fetch(
-      "https://homestay-app-server.azurewebsites.net/user/login",
+      "https://homestay-app-server.cyclic.app/user/login",
       {
         method: "POST",
         headers: {

@@ -25,7 +25,7 @@ const PlacesForm = () => {
   async function addPhotoByInputLink(e) {
     e.preventDefault();
     const { data: filename } = await axios.post(
-      "https://homestay-app-server.azurewebsites.net/upload-by-link",
+      "https://homestay-app-server.cyclic.app/upload-by-link",
       { link: photoLink }
     );
     setAddedPhotos((previous) => {
@@ -43,7 +43,7 @@ const PlacesForm = () => {
     }
 
     const response = await axios.post(
-      "https://homestay-app-server.azurewebsites.net/upload",
+      "https://homestay-app-server.cyclic.app/upload",
       data,
       {
         headers: { "Content-type": "multipart/form-data" },
@@ -100,7 +100,7 @@ const PlacesForm = () => {
       withCredentials: true,
     };
     const response = await axios.post(
-      `https://homestay-app-server.azurewebsites.net/places/add-places`,
+      `https://homestay-app-server.cyclic.app/places/add-places`,
       placeData,
       config
     );

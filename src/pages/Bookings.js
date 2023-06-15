@@ -14,7 +14,7 @@ const BookingsPage = () => {
       const dataKey = JSON.parse(localStorage.getItem("dataKey"));
       const token = dataKey.token;
       const { data } = await axios.get(
-        "https://homestay-app-server.azurewebsites.net/bookings",
+        "https://homestay-app-server.cyclic.app/bookings",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ const BookingsPage = () => {
     const token = dataKey.token;
     console.log(id);
     const response = await axios.delete(
-      `https://homestay-app-server.azurewebsites.net/bookings/${id}`,
+      `https://homestay-app-server.cyclic.app/bookings/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

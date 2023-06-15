@@ -16,7 +16,7 @@ const PlacesPage = () => {
     const getPlaces = async () => {
       try {
         const { data } = await axios.get(
-          "https://homestay-app-server.azurewebsites.net/places/user-places",
+          "https://homestay-app-server.cyclic.app/places/user-places",
           {
             headers: {
               Authorization: `Bearer ${token}`,

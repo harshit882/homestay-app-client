@@ -38,7 +38,7 @@ const BookingWidget = ({ place }) => {
     const dataKey = JSON.parse(localStorage.getItem("dataKey"));
     const token = dataKey.token;
     const response = await axios.post(
-      "https://homestay-app-server.azurewebsites.net/bookings",
+      "https://homestay-app-server.cyclic.app/bookings",
       {
         checkIn,
         checkOut,
@@ -76,7 +76,7 @@ const BookingWidget = ({ place }) => {
         Price: ₹{place.price} / per night
       </div>
       <div className="text-xl text-center">
-      {/* {console.log(place.perks)} */}
+        {/* {console.log(place.perks)} */}
         Available facilities: {`${place.perks} `}
       </div>
       <div className="border rounded-2xl mt-4">

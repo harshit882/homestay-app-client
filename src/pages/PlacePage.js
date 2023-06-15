@@ -1,10 +1,10 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import Spinner from '../components/Spinner';
-import BookingWidget from '../components/BookingWidget';
-import AddressLink from '../components/AddressLink';
-import PlaceGallery from '../components/PlaceGallery';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import BookingWidget from "../components/BookingWidget";
+import AddressLink from "../components/AddressLink";
+import PlaceGallery from "../components/PlaceGallery";
 
 const PlacePage = () => {
   const { id } = useParams();
@@ -13,13 +13,15 @@ const PlacePage = () => {
 
   useEffect(() => {
     if (!id) {
-      return '';
+      return "";
     }
 
     setLoading(true);
 
     const getPlace = async () => {
-      const { data } = await axios.get(`https://homestay-app-server.azurewebsites.net/places/${id}`);
+      const { data } = await axios.get(
+        `https://homestay-app-server.cyclic.app/places/${id}`
+      );
       setPlace(data.place);
       setLoading(false);
     };
@@ -40,7 +42,6 @@ const PlacePage = () => {
 
       <AddressLink placeAddress={place.address} />
       <PlaceGallery place={place} />
-     
 
       <div className="mt-8 mb-8 mx-4 gap-8 grid grid-cols-1 md:grid-cols-[2fr_1fr]">
         <div>
@@ -48,12 +49,12 @@ const PlacePage = () => {
             <h2 className="font-semibold text-2xl">Description</h2>
             {place.description}
           </div>
-          Check-in: {place.checkIn} pm <br /> Check-out: {place.checkOut} am <br />
+          Check-in: {place.checkIn} pm <br /> Check-out: {place.checkOut} am{" "}
+          <br />
           Max number of guests: {place.maxGuests}
         </div>
         <div>
           <BookingWidget place={place} />
-         
         </div>
       </div>
       <div className="bg-white -mx-8 px-8 py-8 border-t">
